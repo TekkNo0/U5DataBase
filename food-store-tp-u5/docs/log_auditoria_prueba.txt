@@ -1,0 +1,20 @@
+# Fragmento de log - Parte B (auditoria nativa)
+# Extraido de: C:/Program Files/PostgreSQL/17/data/log/
+
+2026-10-19 16:41:04.660 -03 [15336] postgres@foodstore_u5_tp ::1 LOG:  conexión autorizada: usuario=postgres base_de_datos=foodstore_u5_tp nombre_de_aplicación=MARCA_INICIO_AUDITORIA
+2026-10-19 16:41:04.664 -03 [15336] postgres@foodstore_u5_tp ::1 LOG:  desconexión: duración de sesión: 0:00:00.028 usuario=postgres base=foodstore_u5_tp host=::1 port=58699
+2026-10-19 16:41:04.716 -03 [19316] [desconocido]@[desconocido] ::1 LOG:  conexión recibida: host=::1 port=58700
+2026-10-19 16:41:04.729 -03 [19316] app_web@foodstore_u5_tp ::1 LOG:  conexión autenticada: identidad=«app_web» método=scram-sha-256 (C:/Program Files/PostgreSQL/17/data/pg_hba.conf:117)
+2026-10-19 16:41:04.729 -03 [19316] app_web@foodstore_u5_tp ::1 LOG:  conexión autorizada: usuario=app_web base_de_datos=foodstore_u5_tp nombre_de_aplicación=app_web_tp_u5
+2026-10-19 16:41:04.733 -03 [19316] app_web@foodstore_u5_tp ::1 LOG:  sentencia: INSERT INTO pedido (usuario_id, total, estado)
+	VALUES (1, 0, 'PENDIENTE');
+2026-10-19 16:41:04.747 -03 [19316] app_web@foodstore_u5_tp ::1 LOG:  sentencia: UPDATE pedido
+	SET total = 123.45
+	WHERE id = (SELECT max(id) FROM pedido);
+2026-10-19 16:41:04.755 -03 [19316] app_web@foodstore_u5_tp ::1 LOG:  desconexión: duración de sesión: 0:00:00.050 usuario=app_web base=foodstore_u5_tp host=::1 port=58700
+2026-10-19 16:41:04.883 -03 [20096] [desconocido]@[desconocido] ::1 LOG:  conexión recibida: host=::1 port=58702
+2026-10-19 16:41:04.896 -03 [20096] app_web@foodstore_u5_tp ::1 FATAL:  la autentificación password falló para el usuario «app_web»
+2026-10-19 16:41:04.896 -03 [20096] app_web@foodstore_u5_tp ::1 DETALLE:  La conexión coincidió con el archivo «C:/Program Files/PostgreSQL/17/data/pg_hba.conf» línea 117: «host    all             all             ::1/128                 scram-sha-256»
+2026-10-19 16:41:05.017 -03 [4708] [desconocido]@[desconocido] ::1 LOG:  conexión recibida: host=::1 port=58703
+2026-10-19 16:41:05.030 -03 [4708] postgres@foodstore_u5_tp ::1 LOG:  conexión autenticada: identidad=«postgres» método=scram-sha-256 (C:/Program Files/PostgreSQL/17/data/pg_hba.conf:117)
+2026-10-19 16:41:05.030 -03 [4708] postgres@foodstore_u5_tp ::1 LOG:  conexión autorizada: usuario=postgres base_de_datos=foodstore_u5_tp nombre_de_aplicación=MARCA_FIN_AUDITORIA
