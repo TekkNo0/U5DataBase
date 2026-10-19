@@ -1,0 +1,50 @@
+﻿=== CONSULTA 1 - sobre usuario_anon (por rol y mes_alta) ===
+    rol    | mes_alta | cantidad 
+-----------+----------+----------
+ admin     |        4 |     1667
+ admin     |        8 |     1667
+ admin     |       12 |     1666
+ comprador |        1 |     1666
+ comprador |        5 |     1667
+ comprador |        9 |     1667
+ soporte   |        3 |     1667
+ soporte   |        7 |     1667
+ soporte   |       11 |     1666
+ vendedor  |        2 |     1667
+ vendedor  |        6 |     1667
+ vendedor  |       10 |     1666
+(12 filas)
+
+=== CONSULTA 2 - equivalente sobre usuario real ===
+    rol    | mes_alta | cantidad 
+-----------+----------+----------
+ admin     |        4 |     1667
+ admin     |        8 |     1667
+ admin     |       12 |     1666
+ comprador |        1 |     1666
+ comprador |        5 |     1667
+ comprador |        9 |     1667
+ soporte   |        3 |     1667
+ soporte   |        7 |     1667
+ soporte   |       11 |     1666
+ vendedor  |        2 |     1667
+ vendedor  |        6 |     1667
+ vendedor  |       10 |     1666
+(12 filas)
+
+=== PRUEBA DE EQUIVALENCIA (EXCEPT en ambas direcciones; se esperan 0) ===
+    direccion     | filas_diferentes 
+------------------+------------------
+ anon EXCEPT real |                0
+ real EXCEPT anon |                0
+(2 filas)
+
+=== CONTROL: total de filas en ambas tablas ===
+ total_real | total_anon 
+------------+------------
+      20000 |      20000
+(1 fila)
+
+
+========== FIN STDOUT / stderr ==========
+
