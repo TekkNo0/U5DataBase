@@ -1,0 +1,37 @@
+# Fragmento de log del simulacro - ANONIMIZADO (Parte C)
+# Mails y credenciales reemplazados por valores sinteticos deterministas.
+
+2026-10-19 16:53:09.985 -03 [19752] postgres@foodstore_u5_tp ::1 LOG:  conexión autorizada: usuario=postgres base_de_datos=foodstore_u5_tp nombre_de_aplicación=SIM_MARCA_INICIO
+2026-10-19 16:53:09.989 -03 [19752] postgres@foodstore_u5_tp ::1 LOG:  sentencia: SELECT 1;
+2026-10-19 16:53:09.990 -03 [19752] postgres@foodstore_u5_tp ::1 LOG:  desconexión: duración de sesión: 0:00:00.033 usuario=postgres base=foodstore_u5_tp host=::1 port=56117
+2026-10-19 16:53:10.065 -03 [9820] [desconocido]@[desconocido] ::1 LOG:  conexión recibida: host=::1 port=56118
+2026-10-19 16:53:10.079 -03 [9820] app_web@foodstore_u5_tp ::1 FATAL:  la autentificación password falló para el usuario «app_web»
+2026-10-19 16:53:10.079 -03 [9820] app_web@foodstore_u5_tp ::1 DETALLE:  La conexión coincidió con el archivo «C:/Program Files/PostgreSQL/17/data/pg_hba.conf» línea 117: «host    all             all             ::1/128                 scram-sha-256»
+2026-10-19 16:53:10.144 -03 [6444] [desconocido]@[desconocido] ::1 LOG:  conexión recibida: host=::1 port=56119
+2026-10-19 16:53:10.160 -03 [6444] app_web@foodstore_u5_tp ::1 FATAL:  la autentificación password falló para el usuario «app_web»
+2026-10-19 16:53:10.160 -03 [6444] app_web@foodstore_u5_tp ::1 DETALLE:  La conexión coincidió con el archivo «C:/Program Files/PostgreSQL/17/data/pg_hba.conf» línea 117: «host    all             all             ::1/128                 scram-sha-256»
+2026-10-19 16:53:10.236 -03 [16892] [desconocido]@[desconocido] ::1 LOG:  conexión recibida: host=::1 port=56120
+2026-10-19 16:53:10.251 -03 [16892] app_web@foodstore_u5_tp ::1 FATAL:  la autentificación password falló para el usuario «app_web»
+2026-10-19 16:53:10.251 -03 [16892] app_web@foodstore_u5_tp ::1 DETALLE:  La conexión coincidió con el archivo «C:/Program Files/PostgreSQL/17/data/pg_hba.conf» línea 117: «host    all             all             ::1/128                 scram-sha-256»
+2026-10-19 16:53:10.323 -03 [20948] [desconocido]@[desconocido] ::1 LOG:  conexión recibida: host=::1 port=56121
+2026-10-19 16:53:10.338 -03 [20948] app_web@foodstore_u5_tp ::1 LOG:  conexión autenticada: identidad=«app_web» método=scram-sha-256 (C:/Program Files/PostgreSQL/17/data/pg_hba.conf:117)
+2026-10-19 16:53:10.338 -03 [20948] app_web@foodstore_u5_tp ::1 LOG:  conexión autorizada: usuario=app_web base_de_datos=foodstore_u5_tp nombre_de_aplicación=app_web_simulacro
+2026-10-19 16:53:10.343 -03 [20948] app_web@foodstore_u5_tp ::1 LOG:  sentencia: SELECT fn_autenticar('anon_001@example.test', 'pwd-fallida-A') AS intento_1;
+2026-10-19 16:53:10.349 -03 [20948] app_web@foodstore_u5_tp ::1 LOG:  sentencia: SELECT fn_autenticar('anon_001@example.test', 'pwd-fallida-B') AS intento_2;
+2026-10-19 16:53:10.349 -03 [20948] app_web@foodstore_u5_tp ::1 LOG:  sentencia: SELECT fn_autenticar('anon_001@example.test', 'pwd-fallida-C') AS intento_3;
+2026-10-19 16:53:10.350 -03 [20948] app_web@foodstore_u5_tp ::1 LOG:  sentencia: SELECT fn_autenticar('anon_001@example.test', 'pwd-valida-X') AS intento_exitoso;
+2026-10-19 16:53:10.350 -03 [20948] app_web@foodstore_u5_tp ::1 LOG:  sentencia: SELECT count(*) AS total_usuarios FROM usuario;
+2026-10-19 16:53:10.355 -03 [20948] app_web@foodstore_u5_tp ::1 LOG:  sentencia: SELECT id, nombre, apellido, email
+	FROM usuario
+	ORDER BY id;
+2026-10-19 16:53:10.405 -03 [20948] app_web@foodstore_u5_tp ::1 LOG:  sentencia: GRANT admin_datos TO app_web;
+2026-10-19 16:53:10.408 -03 [20948] app_web@foodstore_u5_tp ::1 ERROR:  se ha denegado el permiso para otorgar el rol «admin_datos»
+2026-10-19 16:53:10.408 -03 [20948] app_web@foodstore_u5_tp ::1 DETALLE:  Sólo los roles con la opción ADMIN en el rol «admin_datos» pueden otorgar este rol.
+2026-10-19 16:53:10.408 -03 [20948] app_web@foodstore_u5_tp ::1 SENTENCIA:  GRANT admin_datos TO app_web;
+2026-10-19 16:53:10.410 -03 [20948] app_web@foodstore_u5_tp ::1 LOG:  sentencia: CREATE TABLE backdoor_persistencia (id INT);
+2026-10-19 16:53:10.411 -03 [20948] app_web@foodstore_u5_tp ::1 ERROR:  permiso denegado al esquema public en carácter 14
+2026-10-19 16:53:10.411 -03 [20948] app_web@foodstore_u5_tp ::1 SENTENCIA:  CREATE TABLE backdoor_persistencia (id INT);
+2026-10-19 16:53:10.412 -03 [20948] app_web@foodstore_u5_tp ::1 LOG:  desconexión: duración de sesión: 0:00:00.105 usuario=app_web base=foodstore_u5_tp host=::1 port=56121
+2026-10-19 16:53:10.467 -03 [13344] [desconocido]@[desconocido] ::1 LOG:  conexión recibida: host=::1 port=56123
+2026-10-19 16:53:10.478 -03 [13344] postgres@foodstore_u5_tp ::1 LOG:  conexión autenticada: identidad=«postgres» método=scram-sha-256 (C:/Program Files/PostgreSQL/17/data/pg_hba.conf:117)
+2026-10-19 16:53:10.478 -03 [13344] postgres@foodstore_u5_tp ::1 LOG:  conexión autorizada: usuario=postgres base_de_datos=foodstore_u5_tp nombre_de_aplicación=SIM_MARCA_FIN
