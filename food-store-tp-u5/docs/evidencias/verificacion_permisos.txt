@@ -1,0 +1,201 @@
+﻿============================================================
+ 1. ROLES Y MEMBRESIAS (\du)
+============================================================
+      Lista de roles
+ Nombre de rol | Atributos 
+---------------+-----------
+ app_web       | 
+
+      Lista de roles
+ Nombre de rol | Atributos 
+---------------+-----------
+ admin_datos   | 
+
+      Lista de roles
+ Nombre de rol | Atributos 
+---------------+-----------
+ auditor_sec   | 
+
+            Lista de roles
+  Nombre de rol  |      Atributos      
+-----------------+---------------------
+ rol_app_lectura | No puede conectarse
+
+             Lista de roles
+   Nombre de rol   |      Atributos      
+-------------------+---------------------
+ rol_app_escritura | No puede conectarse
+
+           Lista de roles
+ Nombre de rol |      Atributos      
+---------------+---------------------
+ rol_soporte   | No puede conectarse
+
+           Lista de roles
+ Nombre de rol |      Atributos      
+---------------+---------------------
+ rol_reportes  | No puede conectarse
+
+           Lista de roles
+ Nombre de rol |      Atributos      
+---------------+---------------------
+ rol_auditor   | No puede conectarse
+
+============================================================
+ 1b. MEMBRESIAS (pg_auth_members)
+============================================================
+     rol_grupo     |      miembro      
+-------------------+-------------------
+ rol_app_escritura | app_web
+ rol_app_lectura   | rol_app_escritura
+ rol_auditor       | auditor_sec
+(3 filas)
+
+============================================================
+ 2. GRANTS POR TABLA/VISTA (information_schema.role_table_grants)
+============================================================
+      grantee      |         table_name          |                          privilegios                          
+-------------------+-----------------------------+---------------------------------------------------------------
+ admin_datos       | categoria                   | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ admin_datos       | control_lote_almacen_compat | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ admin_datos       | control_lote_responsable    | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ admin_datos       | deposito                    | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ admin_datos       | deposito_responsable        | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ admin_datos       | detalle_pedido              | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ admin_datos       | lote                        | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ admin_datos       | pedido                      | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ admin_datos       | producto                    | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ admin_datos       | usuario                     | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ admin_datos       | usuario_anon                | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ admin_datos       | v_detalle_pedido_producto   | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ admin_datos       | v_pedidos_usuario           | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ admin_datos       | v_productos_vigentes        | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ admin_datos       | v_usuarios_sin_contrasena   | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ admin_datos       | venta_categoria_diaria      | DELETE, INSERT, REFERENCES, SELECT, TRIGGER, TRUNCATE, UPDATE
+ rol_app_escritura | detalle_pedido              | DELETE, INSERT, UPDATE
+ rol_app_escritura | pedido                      | DELETE, INSERT, UPDATE
+ rol_app_escritura | usuario                     | INSERT, UPDATE
+ rol_app_lectura   | categoria                   | SELECT
+ rol_app_lectura   | deposito                    | SELECT
+ rol_app_lectura   | detalle_pedido              | SELECT
+ rol_app_lectura   | lote                        | SELECT
+ rol_app_lectura   | pedido                      | SELECT
+ rol_app_lectura   | producto                    | SELECT
+ rol_auditor       | detalle_pedido              | SELECT
+ rol_auditor       | pedido                      | SELECT
+ rol_auditor       | v_detalle_pedido_producto   | SELECT
+ rol_auditor       | v_pedidos_usuario           | SELECT
+ rol_auditor       | v_productos_vigentes        | SELECT
+ rol_auditor       | v_usuarios_sin_contrasena   | SELECT
+ rol_reportes      | v_detalle_pedido_producto   | SELECT
+ rol_reportes      | v_pedidos_usuario           | SELECT
+ rol_reportes      | v_productos_vigentes        | SELECT
+ rol_reportes      | v_usuarios_sin_contrasena   | SELECT
+ rol_reportes      | venta_categoria_diaria      | SELECT
+ rol_soporte       | categoria                   | SELECT
+ rol_soporte       | control_lote_almacen_compat | SELECT
+ rol_soporte       | control_lote_responsable    | SELECT
+ rol_soporte       | deposito                    | SELECT
+ rol_soporte       | deposito_responsable        | SELECT
+ rol_soporte       | detalle_pedido              | SELECT
+ rol_soporte       | lote                        | SELECT
+ rol_soporte       | pedido                      | SELECT
+ rol_soporte       | producto                    | SELECT
+ rol_soporte       | venta_categoria_diaria      | SELECT
+(46 filas)
+
+============================================================
+ 3. PRIVILEGIOS A NIVEL DE COLUMNA SOBRE usuario
+    (nadie salvo admin_datos debe ver contrasena)
+============================================================
+      grantee      | column_name |            privilegios             
+-------------------+-------------+------------------------------------
+ admin_datos       | activo      | INSERT, REFERENCES, SELECT, UPDATE
+ admin_datos       | apellido    | INSERT, REFERENCES, SELECT, UPDATE
+ admin_datos       | contrasena  | INSERT, REFERENCES, SELECT, UPDATE
+ admin_datos       | email       | INSERT, REFERENCES, SELECT, UPDATE
+ admin_datos       | id          | INSERT, REFERENCES, SELECT, UPDATE
+ admin_datos       | nombre      | INSERT, REFERENCES, SELECT, UPDATE
+ rol_app_escritura | activo      | INSERT, UPDATE
+ rol_app_escritura | apellido    | INSERT, UPDATE
+ rol_app_escritura | contrasena  | INSERT, UPDATE
+ rol_app_escritura | email       | INSERT, UPDATE
+ rol_app_escritura | id          | INSERT, UPDATE
+ rol_app_escritura | nombre      | INSERT, UPDATE
+ rol_app_lectura   | activo      | SELECT
+ rol_app_lectura   | apellido    | SELECT
+ rol_app_lectura   | email       | SELECT
+ rol_app_lectura   | id          | SELECT
+ rol_app_lectura   | nombre      | SELECT
+ rol_auditor       | activo      | SELECT
+ rol_auditor       | apellido    | SELECT
+ rol_auditor       | email       | SELECT
+ rol_auditor       | id          | SELECT
+ rol_auditor       | nombre      | SELECT
+ rol_soporte       | activo      | SELECT
+ rol_soporte       | apellido    | SELECT
+ rol_soporte       | email       | SELECT
+ rol_soporte       | id          | SELECT
+ rol_soporte       | nombre      | SELECT
+(27 filas)
+
+============================================================
+ 3b. SONDEO DECLARATIVO: has_column_privilege sobre usuario
+     (f = no puede, t = puede)
+============================================================
+        rol        | puede_select_contrasena | puede_select_email | puede_update_contrasena 
+-------------------+-------------------------+--------------------+-------------------------
+ admin_datos       | t                       | t                  | t
+ app_web           | f                       | t                  | t
+ auditor_sec       | f                       | t                  | f
+ rol_app_escritura | f                       | t                  | t
+ rol_app_lectura   | f                       | t                  | f
+ rol_auditor       | f                       | t                  | f
+ rol_reportes      | f                       | f                  | f
+ rol_soporte       | f                       | t                  | f
+(8 filas)
+
+============================================================
+ 4. PRUEBA NEGATIVA - app_web NO puede leer usuario.contrasena
+    (se espera: ERROR de permisos, tabla/columna denegada)
+============================================================
+SET
+RESET
+============================================================
+ 5. PRUEBA NEGATIVA - app_web NO puede autoescalar a admin_datos
+    (se espera: ERROR must have admin option on role admin_datos)
+============================================================
+SET
+RESET
+============================================================
+ 6. PRUEBA POSITIVA - app_web SI puede leer las columnas permitidas
+============================================================
+SET
+ id |  nombre  |       email       
+----+----------+-------------------
+  1 | Usuario1 | usuario1@mail.com
+  2 | Usuario2 | usuario2@mail.com
+  3 | Usuario3 | usuario3@mail.com
+(3 filas)
+
+RESET
+============================================================
+ 7. PRUEBA NEGATIVA - auditor_sec NO puede ejecutar fn_resetear_password
+    (PUBLIC no debe tener EXECUTE sobre las funciones SECURITY DEFINER)
+============================================================
+       funcion        | public_ejecuta | app_web_ejecuta | auditor_ejecuta 
+----------------------+----------------+-----------------+-----------------
+ fn_autenticar        | f              | t               | f
+ fn_resetear_password | f              | t               | f
+(2 filas)
+
+--- intento real como auditor_sec (se espera: ERROR de permisos) ---
+SET
+RESET
+
+========== FIN STDOUT / stderr ==========
+psql:C:/Users/maxim/Desktop/U5DataBase/food-store-tp-u5/docs/evidencias/verificacion_permisos.sql:70: ERROR:  permiso denegado a la tabla usuario
+psql:C:/Users/maxim/Desktop/U5DataBase/food-store-tp-u5/docs/evidencias/verificacion_permisos.sql:78: ERROR:  se ha denegado el permiso para otorgar el rol ┬½admin_datos┬╗
+DETALLE:  S├│lo los roles con la opci├│n ADMIN en el rol ┬½admin_datos┬╗ pueden otorgar este rol.
+psql:C:/Users/maxim/Desktop/U5DataBase/food-store-tp-u5/docs/evidencias/verificacion_permisos.sql:104: ERROR:  permiso denegado a la funci├│n fn_resetear_password
+

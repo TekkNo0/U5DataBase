@@ -1,0 +1,12 @@
+# Entorno / editor
+*.tmp
+*.bak
+*.log.bak
+
+# Archivos de sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Notas: los logs de evidencia (.txt) SÍ se versionan a propósito,
+# porque son parte de los entregables del TP.
