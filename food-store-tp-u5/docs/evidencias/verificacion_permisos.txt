@@ -166,6 +166,17 @@ RESET
     (se espera: ERROR must have admin option on role admin_datos)
 ============================================================
 SET
+psql.exe : psql:C:/Users/maxim/Desktop/U5DataBase/food-store-tp-u5/docs/evidencias/verificacion_permisos.sql:70: 
+ERROR:  permiso denegado a la tabla usuario
+En línea: 1 Carácter: 120
++ ... ing]::UTF8; & "C:\Program Files\PostgreSQL\17\bin\psql.exe" -U postgr ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (psql:C:/Users/m...a tabla usuario:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+psql:C:/Users/maxim/Desktop/U5DataBase/food-store-tp-u5/docs/evidencias/verificacion_permisos.sql:78: ERROR:  se ha 
+denegado el permiso para otorgar el rol «admin_datos»
+DETALLE:  Sólo los roles con la opción ADMIN en el rol «admin_datos» pueden otorgar este rol.
 RESET
 ============================================================
  6. PRUEBA POSITIVA - app_web SI puede leer las columnas permitidas
@@ -191,11 +202,6 @@ RESET
 
 --- intento real como auditor_sec (se espera: ERROR de permisos) ---
 SET
+psql:C:/Users/maxim/Desktop/U5DataBase/food-store-tp-u5/docs/evidencias/verificacion_permisos.sql:104: ERROR:  permiso 
+denegado a la función fn_resetear_password
 RESET
-
-========== FIN STDOUT / stderr ==========
-psql:C:/Users/maxim/Desktop/U5DataBase/food-store-tp-u5/docs/evidencias/verificacion_permisos.sql:70: ERROR:  permiso denegado a la tabla usuario
-psql:C:/Users/maxim/Desktop/U5DataBase/food-store-tp-u5/docs/evidencias/verificacion_permisos.sql:78: ERROR:  se ha denegado el permiso para otorgar el rol ┬½admin_datos┬╗
-DETALLE:  S├│lo los roles con la opci├│n ADMIN en el rol ┬½admin_datos┬╗ pueden otorgar este rol.
-psql:C:/Users/maxim/Desktop/U5DataBase/food-store-tp-u5/docs/evidencias/verificacion_permisos.sql:104: ERROR:  permiso denegado a la funci├│n fn_resetear_password
-
